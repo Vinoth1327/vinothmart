@@ -16,8 +16,11 @@ RUN apt-get update && apt-get install -y \
     libbrotli-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN git clone --depth 1 https://github.com/drogonframework/drogon.git /tmp/drogon && \
+# Download a stable Drogon release
+RUN git clone --depth 1 --branch v1.9.11 \
+    https://github.com/drogonframework/drogon.git /tmp/drogon && \
     cd /tmp/drogon && \
+    git submodule update --init --recursive && \
     mkdir build && \
     cd build && \
     cmake .. \
@@ -30,7 +33,7 @@ RUN git clone --depth 1 https://github.com/drogonframework/drogon.git /tmp/drogo
 
 WORKDIR /app
 
-COPY . .
+COPY backend/ ./
 
 RUN mkdir build && \
     cd build && \
