@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
     libbrotli-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Download a stable Drogon release
+# Download stable Drogon release
 RUN git clone --depth 1 --branch v1.9.11 \
     https://github.com/drogonframework/drogon.git /tmp/drogon && \
     cd /tmp/drogon && \
@@ -26,6 +26,7 @@ RUN git clone --depth 1 --branch v1.9.11 \
     cmake .. \
         -DCMAKE_BUILD_TYPE=Release \
         -DBUILD_CTL=OFF \
+        -DBUILD_EXAMPLES=OFF \
         -DBUILD_TESTING=OFF && \
     make -j2 && \
     make install && \
