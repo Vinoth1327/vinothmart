@@ -2,6 +2,7 @@
 #include <sqlite3.h>
 #include <iostream>
 #include <string>
+#include <cstdlib>
 
 using namespace drogon;
 
@@ -3704,13 +3705,39 @@ int main()
     std::cout
         << "Starting Vinoth Mart Backend...\n";
 
+    // Render provides the PORT environment variable.
+    // Local computer uses port 8080.
+
+    int port = 8080;
+
+    const char *portEnvironment =
+        std::getenv("PORT");
+
+    if (portEnvironment != nullptr)
+    {
+        try
+        {
+            port = std::stoi(portEnvironment);
+        }
+        catch (...)
+        {
+            std::cerr
+                << "Invalid PORT environment variable. "
+                << "Using port 8080.\n";
+
+            port = 8080;
+        }
+    }
+
     std::cout
-        << "Server: http://127.0.0.1:8080\n";
+        << "Server starting on 0.0.0.0:"
+        << port
+        << "\n";
 
     app()
         .addListener(
-            "127.0.0.1",
-            8080
+            "0.0.0.0",
+            port
         )
         .run();
 
