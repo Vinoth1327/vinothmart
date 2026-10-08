@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Vinoth Mart - All In One</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#e0f7ff;color:#173042;min-height:100vh}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+.message{margin:12px 0;text-align:center;font-weight:700;min-height:20px}
+.success{color:#2e7d32}
+.error{color:#d32f2f}
+
+/* LOGIN */
+#loginPage{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#dff8ff,#f8fdff)}
+.login-container{width:min(980px,96vw);min-height:610px;background:#fff;border-radius:28px;overflow:hidden;display:grid;grid-template-columns:44% 56%;box-shadow:0 25px 70px rgba(0,125,170,.18)}
+.login-left{background:linear-gradient(145deg,#079bd0,#63d9f5);color:#fff;padding:55px 42px;display:flex;flex-direction:column;justify-content:center}
+.logo{font-size:32px;font-weight:800}
+.login-left h1{font-size:40px;line-height:1.1;margin:16px 0}
+.login-left p{line-height:1.6}
+.features{margin-top:26px}
+.features div{margin:14px 0;font-weight:700}
+.login-right{padding:44px 50px;display:flex;flex-direction:column;justify-content:center}
+.login-right h2{font-size:30px;margin-bottom:8px}
+.subtitle{color:#71808b;margin-bottom:25px}
+.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:20px}
+.roles button{padding:12px 8px;border:1px solid #cce7ef;background:#f5fcff;color:#08749a;border-radius:12px;font-weight:700}
+.roles button.active{background:#079bd0;color:#fff;border-color:#079bd0}
+.field{margin:14px 0}
+.field label{display:block;font-size:13px;font-weight:700;margin-bottom:7px}
+.field input,.field select,.field textarea{width:100%;padding:13px;border:1px solid #cfdfe6;border-radius:10px;outline:none}
+.primary{width:100%;padding:14px;border:0;border-radius:12px;background:#079bd0;color:#fff;font-weight:800}
+.primary:disabled{opacity:.6}
+.create{text-align:center;margin-top:17px;font-size:14px}
+.link{color:#0784b5;font-weight:800;cursor:pointer}
+.demo-note{margin-top:18px;background:#eefaff;border-radius:12px;padding:12px;font-size:12px;line-height:1.6;color:#49606d}
+
+/* APP */
+#app{min-height:100vh}
+header{background:#0288d1;color:#fff;padding:16px 34px;display:flex;justify-content:space-between;align-items:center;gap:15px;position:sticky;top:0;z-index:20}
+.header-actions{display:flex;gap:8px;flex-wrap:wrap}
+.header-btn{background:#fff;color:#0288d1;border:0;border-radius:20px;padding:9px 15px;font-weight:700}
+.header-btn.dark{background:#555;color:#fff}
+.page{max-width:1150px;margin:30px auto;padding:0 20px}
+.welcome{text-align:center;margin-bottom:25px}
+.welcome h1{color:#0288d1;margin-bottom:7px}
+.welcome p{color:#666}
+
+/* BUYER */
+.search-box{background:#fff;padding:18px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,.08);display:flex;gap:12px;flex-wrap:wrap;margin-bottom:25px}
+.search-box input{flex:1;min-width:230px;padding:12px;border:1px solid #ccc;border-radius:8px}
+.search-box select{padding:12px;border:1px solid #ccc;border-radius:8px}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+.product-card{background:#fff;border-radius:16px;padding:18px;box-shadow:0 5px 20px rgba(0,0,0,.08)}
+.product-image{height:165px;border-radius:12px;background:#f5fbff;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:13px}
+.product-image img{width:100%;height:100%;object-fit:contain}
+.product-card h3{margin-bottom:7px}
+.product-desc{color:#666;font-size:14px;line-height:1.5;min-height:42px}
+.price{font-size:20px;font-weight:800;color:#0288d1;margin:10px 0}
+.badge{display:inline-block;background:#e1f5fe;color:#0288d1;padding:5px 9px;border-radius:15px;font-size:12px;font-weight:700}
+.buy{width:100%;padding:11px;border:0;border-radius:8px;background:#03a9f4;color:#fff;font-weight:800;margin-top:12px}
+.review-box{margin-top:15px;border-top:1px solid #ddd;padding-top:12px}
+.stars{display:flex;gap:2px;margin:8px 0}
+.star{font-size:24px;color:#ccc}
+.star.on{color:#ffc107}
+.review-text{font-size:12px;color:#555;margin-top:4px}
+.cart-panel{margin-top:25px;background:#fff;padding:20px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,.08)}
+.cart-row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid #eee}
+.qty{display:flex;align-items:center;gap:7px}
+.qty button{width:28px;height:28px;border:1px solid #bbb;background:#fff;border-radius:6px}
+.total-row{display:flex;justify-content:space-between;font-size:20px;font-weight:800;margin-top:16px;color:#0288d1}
+.empty{padding:30px;text-align:center;color:#777;background:#fff;border-radius:12px}
+
+/* DASHBOARD */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.box{background:#fff;padding:22px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,.08)}
+.box h2{color:#0288d1;margin-bottom:18px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.full{grid-column:1/-1}
+.list-item{background:#f5fbff;padding:15px;border-radius:10px;margin-bottom:11px;border-left:5px solid #03a9f4}
+.list-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.small{font-size:13px;color:#555;line-height:1.65}
+.danger{background:#f44336;color:#fff;border:0;border-radius:7px;padding:8px 12px;font-weight:700}
+.secondary{background:#555;color:#fff;border:0;border-radius:8px;padding:10px 15px;font-weight:700}
+.inline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.preview{height:130px;background:#f5fbff;border:1px dashed #b5d9e7;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.preview img{max-height:120px;max-width:100%;object-fit:contain}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:25px}
+.stat{background:#fff;padding:22px;border-radius:15px;text-align:center;box-shadow:0 5px 20px rgba(0,0,0,.08)}
+.stat .n{font-size:28px;font-weight:800;color:#0288d1;margin:7px 0}
+.table-like{overflow:auto}
+.order-item{background:#f8fdff;border:1px solid #d8edf5;border-radius:10px;padding:15px;margin-bottom:10px}
+.order-item h3{color:#0288d1;margin-bottom:8px}
+.order-product{padding:5px 0;border-bottom:1px solid #e8f2f5}
+.status-select{padding:8px;border:1px solid #bbb;border-radius:7px;font-weight:700}
+
+/* MODAL */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;padding:20px;z-index:50}
+.modal-card{width:min(600px,96vw);max-height:90vh;overflow:auto;background:#fff;border-radius:18px;padding:25px}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+.close{border:0;background:#eee;width:34px;height:34px;border-radius:50%;font-size:20px}
+
+/* RESPONSIVE */
+@media(max-width:800px){
+    .login-container{grid-template-columns:1fr}
+    .login-left{display:none}
+    .grid2{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+    header{padding:13px 18px}
+    .logo{font-size:23px}
+    .stats{grid-template-columns:1fr}
+    .form-grid{grid-template-columns:1fr}
+    .full{grid-column:auto}
+    .roles{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= LOGIN ================= -->
+<section id="loginPage">
+    <div class="login-container">
+        <div class="login-left">
+            <div class="logo">🛒 Vinoth Mart</div>
+            <h1>Welcome<br>to Vinoth Mart</h1>
+            <p>Your smart multi-seller shopping platform.</p>
+            <div class="features">
+                <div>🛍️ Easy Shopping</div>
+                <div>🏪 Seller Product Management</div>
+                <div>🛡️ Admin Management</div>
+                <div>🔐 Database Login</div>
+            </div>
+        </div>
+
+        <div class="login-right">
+            <h2 id="loginTitle">Buyer Login</h2>
+            <p class="subtitle">Login to continue to your account</p>
+
+            <div class="roles">
+                <button type="button" id="buyerRole" class="active" onclick="selectRole('buyer')">👤 Buyer</button>
+                <button type="button" id="sellerRole" onclick="selectRole('seller')">🏪 Seller</button>
+                <button type="button" id="adminRole" onclick="selectRole('admin')">⚙️ Admin</button>
+            </div>
+
+            <form onsubmit="login(event)">
+                <div class="field">
+                    <label>Email Address</label>
+                    <input id="loginEmail" type="email" required placeholder="Enter your email">
+                </div>
+
+                <div class="field">
+                    <label>Password</label>
+                    <input id="loginPassword" type="password" required placeholder="Enter your password">
+                </div>
+
+                <button class="primary" id="loginButton" type="submit">Login →</button>
+            </form>
+
+            <div id="loginMessage" class="message"></div>
+
+            <div id="createAccount" class="create">
+                Don't have an account?
+                <span class="link" onclick="showRegister()">Create Account</span>
+            </div>
+
+            <div class="demo-note">
+                Admin account must exist in the database with role <b>admin</b>.
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- ================= REGISTER ================= -->
+<section id="registerPage" class="hidden">
+    <div class="login-container">
+        <div class="login-left">
+            <div class="logo">🛒 Vinoth Mart</div>
+            <h1>Create your<br>Vinoth Mart account</h1>
+            <p>Register as a Buyer or Seller and start using the mart.</p>
+            <div class="features">
+                <div>👤 Buyer account for shopping</div>
+                <div>🏪 Seller account for products</div>
+                <div>🔐 Login with MySQL database</div>
+                <div>⚡ Simple college-project setup</div>
+            </div>
+        </div>
+        <div class="login-right">
+            <h2>Create Account</h2>
+            <p class="subtitle">Enter your details to register</p>
+            <form onsubmit="registerAccount(event)">
+                <div class="field">
+                    <label>Full Name</label>
+                    <input id="registerName" required maxlength="80" placeholder="Enter your name">
+                </div>
+                <div class="field">
+                    <label>Email Address</label>
+                    <input id="registerEmail" type="email" required maxlength="120" placeholder="Enter your email">
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input id="registerPassword" type="password" required minlength="4" placeholder="Create a password">
+                </div>
+                <div class="field">
+                    <label>Account Type</label>
+                    <select id="registerRole" required>
+                        <option value="buyer">Buyer</option>
+                        <option value="seller">Seller</option>
+                    </select>
+                </div>
+                <button class="primary" id="registerButton" type="submit">Create Account</button>
+            </form>
+            <div id="registerMessage" class="message"></div>
+            <div class="create">
+                Already have an account?
+                <span class="link" onclick="showLogin()">Back to Login</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= APPLICATION ================= -->
+<section id="app" class="hidden">
+
+    <header>
+        <div class="logo">🛒 Vinoth Mart</div>
+        <div class="header-actions">
+            <button id="buyerNav" class="header-btn hidden" onclick="showView('buyerView')">🛍️ Shopping</button>
+            <button id="sellerNav" class="header-btn hidden" onclick="showView('sellerView')">🏪 Seller</button>
+            <button id="adminNav" class="header-btn hidden" onclick="showView('adminView')">🛡️ Admin</button>
+            <button class="header-btn" onclick="openCart()">🛒 Cart <span id="cartCount">0</span></button>
+            <button class="header-btn dark" onclick="logout()">Logout</button>
+        </div>
+    </header>
+
+
+    <!-- ================= BUYER VIEW ================= -->
+    <main id="buyerView" class="page hidden">
+
+        <div class="welcome">
+            <h1>Welcome, Buyer! 👋</h1>
+            <p>Choose your favourite products</p>
+        </div>
+
+        <div class="search-box">
+            <input id="searchInput" placeholder="🔍 Search products..." oninput="filterProducts()">
+            <select id="categoryFilter" onchange="filterProducts()">
+                <option value="all">All Categories</option>
+                <option value="food">Food</option>
+                <option value="dairy">Dairy</option>
+                <option value="fruits">Fruits</option>
+                <option value="bakery">Bakery</option>
+                <option value="grocery">Grocery</option>
+                <option value="other">Other</option>
+            </select>
+            <button class="secondary" onclick="clearFilters()">Clear</button>
+        </div>
+
+        <div id="buyerProducts" class="products"></div>
+
+        <div class="cart-panel">
+            <div class="inline" style="justify-content:space-between">
+                <h2 style="color:#0288d1">🛒 Cart</h2>
+                <button class="primary" style="width:auto;padding:9px 14px" onclick="openCart()">Open Cart</button>
+            </div>
+            <div id="cartPreview"></div>
+        </div>
+
+        <div class="box" style="margin-top:25px">
+            <div class="inline" style="justify-content:space-between">
+                <h2>📦 My Order History</h2>
+                <button class="secondary" onclick="loadBuyerOrders()">Refresh</button>
+            </div>
+            <div id="buyerOrders"></div>
+        </div>
+    </main>
+
+
+    <!-- ================= SELLER VIEW ================= -->
+    <main id="sellerView" class="page hidden">
+
+        <div class="welcome">
+            <h1>🏪 Seller Dashboard</h1>
+            <p>Add products, manage your products and view received orders.</p>
+        </div>
+
+        <div class="grid2">
+
+            <div class="box">
+                <h2>➕ Add Product</h2>
+
+                <form onsubmit="addProduct(event)">
+                    <div class="form-grid">
+
+                        <div class="full field">
+                            <label>Product Name</label>
+                            <input id="sellerProductName" required placeholder="Example: Sugar">
+                        </div>
+
+                        <div class="field">
+                            <label>Price</label>
+                            <input id="sellerProductPrice" type="number" min="0.01" step="0.01" required>
+                        </div>
+
+                        <div class="field">
+                            <label>Quantity</label>
+                            <input id="sellerProductQuantity" type="number" min="1" required>
+                        </div>
+
+                        <div class="full field">
+                            <label>Category</label>
+                            <select id="sellerProductCategory" required>
+                                <option value="">Select category</option>
+                                <option value="food">Food</option>
+                                <option value="dairy">Dairy</option>
+                                <option value="fruits">Fruits</option>
+                                <option value="bakery">Bakery</option>
+                                <option value="grocery">Grocery</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="full field">
+                            <label>Product Image URL / Path</label>
+                            <input id="sellerProductImage" placeholder="Example: images/sugar.jpg or https://...">
+                        </div>
+
+                        <div class="full preview" id="sellerImagePreview">
+                            Product image preview
+                        </div>
+
+                        <div class="full">
+                            <button class="primary" type="submit">➕ Add Product</button>
+                        </div>
+                    </div>
+                </form>
+                <div id="sellerMessage" class="message"></div>
+            </div>
+
+
+            <div class="box">
+                <div class="inline" style="justify-content:space-between">
+                    <h2>📦 My Products</h2>
+                    <button class="secondary" onclick="loadSellerProducts()">Refresh</button>
+                </div>
+                <div id="sellerProducts"></div>
+            </div>
+
+        </div>
+
+
+        <div class="box" style="margin-top:25px">
+            <div class="inline" style="justify-content:space-between">
+                <h2>📋 Orders Received</h2>
+                <button class="secondary" onclick="loadSellerOrders()">Refresh</button>
+            </div>
+            <div id="sellerOrders"></div>
+        </div>
+    </main>
+
+
+    <!-- ================= ADMIN VIEW ================= -->
+    <main id="adminView" class="page hidden">
+
+        <div class="welcome">
+            <h1>🛡️ Admin Dashboard</h1>
+            <p>Manage Vinoth Mart products, users and orders.</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div>📦</div>
+                <div id="adminStatProducts" class="n">0</div>
+                <div>Seller Products</div>
+            </div>
+            <div class="stat">
+                <div>👥</div>
+                <div id="adminStatUsers" class="n">0</div>
+                <div>Users</div>
+            </div>
+            <div class="stat">
+                <div>🧾</div>
+                <div id="adminStatOrders" class="n">0</div>
+                <div>Orders</div>
+            </div>
+        </div>
+
+
+        <div class="box">
+            <div class="inline" style="justify-content:space-between">
+                <h2>📦 Product Management</h2>
+                <button class="secondary" onclick="loadAdminProducts()">Refresh</button>
+            </div>
+            <div id="adminProducts"></div>
+        </div>
+
+
+        <div class="box" style="margin-top:25px">
+            <div class="inline" style="justify-content:space-between">
+                <h2>👥 User Management</h2>
+                <button class="secondary" onclick="loadAdminUsers()">Refresh</button>
+            </div>
+            <div id="adminUsers"></div>
+        </div>
+
+
+        <div class="box" style="margin-top:25px">
+            <div class="inline" style="justify-content:space-between">
+                <h2>📋 Order Management</h2>
+                <button class="secondary" onclick="loadAdminOrders()">Refresh</button>
+            </div>
+            <div id="adminOrders"></div>
+        </div>
+    </main>
+
+</section>
+
+
+<!-- ================= CART MODAL ================= -->
+<div id="cartModal" class="modal hidden">
+    <div class="modal-card">
+        <div class="modal-head">
+            <h2 style="color:#0288d1">🛒 Shopping Cart</h2>
+            <button class="close" onclick="closeCart()">×</button>
+        </div>
+
+        <div id="cartItems"></div>
+
+        <div class="total-row">
+            <span>Total</span>
+            <span>₹<span id="cartTotal">0.00</span></span>
+        </div>
+
+        <button class="primary" style="margin-top:18px" onclick="openCheckout()">Proceed to Checkout</button>
+    </div>
+</div>
+
+
+<!-- ================= CHECKOUT MODAL ================= -->
+<div id="checkoutModal" class="modal hidden">
+    <div class="modal-card">
+        <div class="modal-head">
+            <h2 style="color:#0288d1">🧾 Checkout</h2>
+            <button class="close" onclick="closeCheckout()">×</button>
+        </div>
+
+        <div id="checkoutSummary"></div>
+
+        <div class="form-grid" style="margin-top:15px">
+            <div class="field">
+                <label>Name</label>
+                <input id="checkoutName" required>
+            </div>
+            <div class="field">
+                <label>Mobile</label>
+                <input id="checkoutMobile" required>
+            </div>
+            <div class="full field">
+                <label>Address</label>
+                <textarea id="checkoutAddress" rows="3" required></textarea>
+            </div>
+            <div class="field">
+                <label>City</label>
+                <input id="checkoutCity" required>
+            </div>
+            <div class="field">
+                <label>Pincode</label>
+                <input id="checkoutPincode" required>
+            </div>
+            <div class="full field">
+                <label>Payment</label>
+                <select id="checkoutPayment">
+                    <option value="Cash on Delivery">Cash on Delivery</option>
+                    <option value="UPI">UPI</option>
+                    <option value="Card">Card</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="checkoutMessage" class="message"></div>
+
+        <button class="primary" onclick="placeOrder()">✅ Place Order</button>
+    </div>
+</div>
+
+
+<script>
+const API = window.location.protocol === "file:" ? "http://127.0.0.1:8080" : "";
+let currentRole = null;
+let loggedInUser = null;
+let currentProducts = [];
+let selectedRating = {};
+
+
+/* ================= EMBEDDED PRODUCT IMAGES ================= */
+
+function svgImage(title, emoji, bg, fg){
+    const svg =
+`<svg xmlns="http://www.w3.org/2000/svg" width="700" height="500" viewBox="0 0 700 500">
+    <rect width="700" height="500" rx="35" fill="${bg}"/>
+    <circle cx="350" cy="220" r="145" fill="#ffffff" opacity="0.75"/>
+    <text x="350" y="260" text-anchor="middle" font-size="130">${emoji}</text>
+    <text x="350" y="420" text-anchor="middle" font-family="Arial" font-size="30" font-weight="700" fill="${fg}">${title}</text>
+</svg>`;
+    return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+}
+
+const defaultImages = {
+    rice: svgImage("Premium Rice","🍚","#e9f7ec","#2e7d32"),
+    milk: svgImage("Fresh Milk","🥛","#eef8ff","#0277bd"),
+    apple: svgImage("Fresh Apple","🍎","#fff1f1","#c62828"),
+    bread: svgImage("Fresh Bread","🍞","#fff7e8","#8d6e63"),
+    eggs: svgImage("Farm Eggs","🥚","#fffdf0","#8d6e63"),
+    oil: svgImage("Cooking Oil","🧴","#fff6db","#7a5a00")
+};
+
+const defaultProducts = [
+    {id:1,name:"Rice",price:60,description:"Premium quality rice",icon:defaultImages.rice,category:"grocery",sellerProduct:false},
+    {id:2,name:"Milk",price:50,description:"Fresh dairy milk",icon:defaultImages.milk,category:"dairy",sellerProduct:false},
+    {id:3,name:"Apple",price:120,description:"Fresh red apples",icon:defaultImages.apple,category:"fruits",sellerProduct:false},
+    {id:4,name:"Bread",price:40,description:"Fresh bakery bread",icon:defaultImages.bread,category:"bakery",sellerProduct:false},
+    {id:5,name:"Eggs",price:70,description:"Fresh farm eggs",icon:defaultImages.eggs,category:"food",sellerProduct:false},
+    {id:6,name:"Cooking Oil",price:150,description:"Premium cooking oil",icon:defaultImages.oil,category:"grocery",sellerProduct:false}
+];
+
+
+
+function showLogin(){
+    document.getElementById("registerPage").classList.add("hidden");
+    document.getElementById("app").classList.add("hidden");
+    document.getElementById("loginPage").classList.remove("hidden");
+    document.getElementById("loginMessage").textContent = "";
+    selectRole("buyer");
+}
+
+function showRegister(){
+    document.getElementById("loginPage").classList.add("hidden");
+    document.getElementById("app").classList.add("hidden");
+    document.getElementById("registerPage").classList.remove("hidden");
+    document.getElementById("registerMessage").textContent = "";
+}
+
+async function registerAccount(event){
+    event.preventDefault();
+    const button = document.getElementById("registerButton");
+    const message = document.getElementById("registerMessage");
+    const body = {
+        name: document.getElementById("registerName").value.trim(),
+        email: document.getElementById("registerEmail").value.trim(),
+        password: document.getElementById("registerPassword").value,
+        role: document.getElementById("registerRole").value
+    };
+    button.disabled = true;
+    button.textContent = "Creating...";
+    message.textContent = "";
+    try {
+        const response = await fetch(API + "/api/register", {
+            method: "POST",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify(body)
+        });
+        const result = await response.json();
+        message.className = result.success ? "message success" : "message error";
+        message.textContent = result.message || (result.success ? "Account created." : "Registration failed.");
+        if (result.success) {
+            document.getElementById("registerName").value = "";
+            document.getElementById("registerEmail").value = "";
+            document.getElementById("registerPassword").value = "";
+            setTimeout(showLogin, 700);
+        }
+    } catch (error) {
+        console.error(error);
+        message.className = "message error";
+        message.textContent = "Cannot connect to Vinoth Mart server. Start Spring Boot first.";
+    } finally {
+        button.disabled = false;
+        button.textContent = "Create Account";
+    }
+}
+
+/* ================= LOGIN ================= */
+
+function selectRole(role){
+    currentRole = role;
+
+    document.querySelectorAll(".roles button").forEach(b => b.classList.remove("active"));
+    document.getElementById(role + "Role").classList.add("active");
+
+    document.getElementById("loginTitle").textContent =
+        role.charAt(0).toUpperCase() + role.slice(1) + " Login";
+
+    document.getElementById("loginMessage").textContent = "";
+
+    document.getElementById("loginEmail").value = "";
+    document.getElementById("loginPassword").value = "";
+
+    document.getElementById("createAccount").style.display =
+        role === "admin" ? "none" : "block";
+}
+
+async function login(event){
+    event.preventDefault();
+
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value;
+    const msg = document.getElementById("loginMessage");
+    const btn = document.getElementById("loginButton");
+
+    if(!currentRole){
+        msg.className = "message error";
+        msg.textContent = "Please select account type.";
+        return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = "Checking...";
+    msg.textContent = "";
+
+    try{
+        const endpoint = currentRole === "admin" ? "/api/admin/login" : "/api/login";
+
+        const body = currentRole === "admin"
+            ? {email,password}
+            : {email,password,role:currentRole};
+
+        const response = await fetch(API + endpoint,{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(body)
+        });
+
+        const result = await response.json();
+
+        if(!result.success){
+            msg.className = "message error";
+            msg.textContent = result.message || "Invalid email or password.";
+            return;
+        }
+
+        loggedInUser = result.user;
+        localStorage.setItem("vinothLoggedInUser",JSON.stringify(loggedInUser));
+        localStorage.setItem("vinothMartRole",currentRole);
+
+        msg.className = "message success";
+        msg.textContent = "Login successful!";
+
+        setTimeout(() => {
+            startApp();
+        },300);
+
+    }catch(error){
+        console.error(error);
+        msg.className = "message error";
+        msg.textContent = "Cannot connect to Vinoth Mart server. Start Spring Boot first.";
+    }finally{
+        btn.disabled = false;
+        btn.textContent = "Login →";
+    }
+}
+
+function startApp(){
+    document.getElementById("loginPage").classList.add("hidden");
+    document.getElementById("app").classList.remove("hidden");
+
+    document.getElementById("buyerNav").classList.add("hidden");
+    document.getElementById("sellerNav").classList.add("hidden");
+    document.getElementById("adminNav").classList.add("hidden");
+
+    if(currentRole === "buyer"){
+        document.getElementById("buyerNav").classList.remove("hidden");
+        showView("buyerView");
+        loadBuyerProducts();
+        loadBuyerOrders();
+    }
+    else if(currentRole === "seller"){
+        document.getElementById("sellerNav").classList.remove("hidden");
+        showView("sellerView");
+        loadSellerProducts();
+        loadSellerOrders();
+    }
+    else{
+        document.getElementById("adminNav").classList.remove("hidden");
+        showView("adminView");
+        loadAdminProducts();
+        loadAdminUsers();
+        loadAdminOrders();
+    }
+
+    updateCartUI();
+}
+
+function showView(id){
+    ["buyerView","sellerView","adminView"].forEach(x =>
+        document.getElementById(x).classList.add("hidden")
+    );
+    document.getElementById(id).classList.remove("hidden");
+
+    if(id === "buyerView") loadBuyerProducts();
+    if(id === "sellerView"){loadSellerProducts();loadSellerOrders();}
+    if(id === "adminView"){loadAdminProducts();loadAdminUsers();loadAdminOrders();}
+}
+
+function logout(){
+    localStorage.removeItem("vinothLoggedInUser");
+    localStorage.removeItem("vinothMartRole");
+    loggedInUser = null;
+    currentRole = null;
+    document.getElementById("app").classList.add("hidden");
+    document.getElementById("loginPage").classList.remove("hidden");
+    selectRole("buyer");
+}
+
+
+/* ================= HELPERS ================= */
+
+function escapeHTML(value){
+    return String(value ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+}
+
+function getImageForSellerProduct(product){
+    const map = JSON.parse(localStorage.getItem("vinothProductImages") || "{}");
+    return map[String(product.id)] || "";
+}
+
+function saveProductImage(id,url){
+    const map = JSON.parse(localStorage.getItem("vinothProductImages") || "{}");
+    map[String(id)] = url;
+    localStorage.setItem("vinothProductImages",JSON.stringify(map));
+}
+
+function removeProductImage(id){
+    const map = JSON.parse(localStorage.getItem("vinothProductImages") || "{}");
+    delete map[String(id)];
+    localStorage.setItem("vinothProductImages",JSON.stringify(map));
+}
+
+
+/* ================= BUYER PRODUCTS ================= */
+
+async function loadBuyerProducts(){
+    const container = document.getElementById("buyerProducts");
+    container.innerHTML = `<div class="empty">Loading products...</div>`;
+
+    try{
+        const response = await fetch(API + "/api/products");
+        const result = await response.json();
+
+        if(!result.success){
+            throw new Error(result.message || "Failed");
+        }
+
+        const sellerProducts = (result.products || []).map(p => ({
+            id:Number(p.id),
+            name:p.name,
+            price:Number(p.price),
+            description:`${p.category} | Available: ${p.quantity}`,
+            icon:getImageForSellerProduct(p) || "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
+                `<svg xmlns="http://www.w3.org/2000/svg" width="700" height="500">
+                    <rect width="700" height="500" rx="35" fill="#eefaff"/>
+                    <text x="350" y="275" text-anchor="middle" font-size="120">🛍️</text>
+                    <text x="350" y="410" text-anchor="middle" font-family="Arial" font-size="28" fill="#0288d1">Seller Product</text>
+                </svg>`
+            ),
+            category:String(p.category || "other").toLowerCase(),
+            sellerProduct:true,
+            quantity:Number(p.quantity),
+            seller_id:p.seller_id
+        }));
+
+        currentProducts = [...defaultProducts,...sellerProducts];
+        filterProducts();
+
+    }catch(error){
+        console.error(error);
+        container.innerHTML = `<div class="empty error">❌ Cannot load products. Make sure Spring Boot is running.</div>`;
+    }
+}
+
+function filterProducts(){
+    const text = document.getElementById("searchInput").value.trim().toLowerCase();
+    const category = document.getElementById("categoryFilter").value;
+
+    const filtered = currentProducts.filter(p => {
+        const matchesText = p.name.toLowerCase().includes(text);
+        const matchesCategory = category === "all" || p.category === category;
+        return matchesText && matchesCategory;
+    });
+
+    renderBuyerProducts(filtered);
+}
+
+function clearFilters(){
+    document.getElementById("searchInput").value = "";
+    document.getElementById("categoryFilter").value = "all";
+    filterProducts();
+}
+
+async function renderBuyerProducts(list){
+    const container = document.getElementById("buyerProducts");
+    container.innerHTML = "";
+
+    if(!list.length){
+        container.innerHTML = `<div class="empty">No products found.</div>`;
+        return;
+    }
+
+    for(const product of list){
+        const card = document.createElement("div");
+        card.className = "product-card";
+
+        const reviews = await getReviews(product.id);
+
+        card.innerHTML = `
+            <div class="product-image">
+                <img src="${product.icon}" alt="${escapeHTML(product.name)}">
+            </div>
+
+            <h3>${escapeHTML(product.name)}</h3>
+
+            <div class="product-desc">
+                ${escapeHTML(product.description)}
+            </div>
+
+            <div class="price">₹${Number(product.price).toFixed(2)}</div>
+
+            ${product.sellerProduct ? `<span class="badge">Seller Product</span>` : ""}
+
+            <button class="buy" onclick="addToCart(${Number(product.id)})">
+                🛒 Add to Cart
+            </button>
+
+            <div class="review-box">
+                <b style="color:#0288d1">⭐ Product Reviews</b>
+
+                <div>
+                    ${[1,2,3,4,5].map(n =>
+                        `<button style="border:0;background:none;padding:0 2px"
+                            onclick="submitReview(${Number(product.id)},${n})">
+                            <span class="star ${n <= 0 ? "on":""}">★</span>
+                        </button>`
+                    ).join("")}
+                </div>
+
+                <div class="review-text">
+                    ${
+                        reviews.length
+                        ? reviews.slice(0,3).map(r =>
+                            `<div style="margin:6px 0">
+                                <b>${escapeHTML(r.reviewer)}</b> —
+                                ${"★".repeat(Number(r.rating))}
+                                <br>${escapeHTML(r.review_text || "")}
+                            </div>`
+                        ).join("")
+                        : "No reviews yet."
+                    }
+                </div>
+            </div>
+        `;
+
+        container.appendChild(card);
+    }
+}
+
+
+/* ================= REVIEWS ================= */
+
+async function getReviews(productId){
+    try{
+        const response = await fetch(API + "/api/reviews?product_id=" + productId);
+        const result = await response.json();
+        return result.reviews || [];
+    }catch{
+        return [];
+    }
+}
+
+async function submitReview(productId,rating){
+    if(!loggedInUser || currentRole !== "buyer"){
+        alert("Please login as Buyer to review.");
+        return;
+    }
+
+    const review = prompt("Write your review (optional):","");
+
+    try{
+        const response = await fetch(API + "/api/reviews",{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({
+                product_id:Number(productId),
+                buyer_id:Number(loggedInUser.id),
+                rating:Number(rating),
+                review_text:review || ""
+            })
+        });
+
+        const result = await response.json();
+
+        if(result.success){
+            alert("✅ Review submitted!");
+            loadBuyerProducts();
+        }else{
+            alert("❌ " + (result.message || "Review failed."));
+        }
+    }catch(error){
+        console.error(error);
+        alert("❌ Cannot connect to backend.");
+    }
+}
+
+
+/* ================= CART ================= */
+
+function getCart(){
+    return JSON.parse(localStorage.getItem("vinothCart") || "[]");
+}
+
+function saveCart(cart){
+    localStorage.setItem("vinothCart",JSON.stringify(cart));
+    updateCartUI();
+}
+
+function addToCart(productId){
+    if(currentRole !== "buyer"){
+        alert("Only Buyers can add products to the cart.");
+        return;
+    }
+
+    const product = currentProducts.find(p => Number(p.id) === Number(productId));
+    if(!product) return;
+
+    const cart = getCart();
+    const existing = cart.find(x => Number(x.product_id) === Number(productId));
+
+    if(existing){
+        existing.quantity += 1;
+    }else{
+        cart.push({
+            product_id:Number(product.id),
+            name:product.name,
+            price:Number(product.price),
+            quantity:1
+        });
+    }
+
+    saveCart(cart);
+    renderCartPreview();
+    alert(product.name + " added to cart! 🛒");
+}
+
+function changeQuantity(productId,delta){
+    const cart = getCart();
+    const item = cart.find(x => Number(x.product_id) === Number(productId));
+    if(!item) return;
+
+    item.quantity += delta;
+
+    if(item.quantity <= 0){
+        const index = cart.indexOf(item);
+        cart.splice(index,1);
+    }
+
+    saveCart(cart);
+    renderCartPreview();
+    renderCartModal();
+}
+
+function removeFromCart(productId){
+    const cart = getCart().filter(x => Number(x.product_id) !== Number(productId));
+    saveCart(cart);
+    renderCartPreview();
+    renderCartModal();
+}
+
+function cartTotal(){
+    return getCart().reduce((sum,x) => sum + Number(x.price) * Number(x.quantity),0);
+}
+
+function updateCartUI(){
+    const count = getCart().reduce((sum,x)=>sum + Number(x.quantity),0);
+    document.getElementById("cartCount").textContent = count;
+    renderCartPreview();
+}
+
+function renderCartPreview(){
+    const container = document.getElementById("cartPreview");
+    const cart = getCart();
+
+    if(!cart.length){
+        container.innerHTML = `<div class="empty">Your cart is empty.</div>`;
+        return;
+    }
+
+    container.innerHTML = cart.map(item => `
+        <div class="cart-row">
+            <span><b>${escapeHTML(item.name)}</b><br>₹${Number(item.price).toFixed(2)}</span>
+            <span class="qty">
+                <button onclick="changeQuantity(${Number(item.product_id)},-1)">−</button>
+                ${Number(item.quantity)}
+                <button onclick="changeQuantity(${Number(item.product_id)},1)">+</button>
+                <button class="danger" onclick="removeFromCart(${Number(item.product_id)})">×</button>
+            </span>
+        </div>
+    `).join("") + `
+        <div class="total-row">
+            <span>Total</span>
+            <span>₹${cartTotal().toFixed(2)}</span>
+        </div>
+    `;
+}
+
+function openCart(){
+    if(!loggedInUser || currentRole !== "buyer"){
+        alert("Please login as Buyer to use the cart.");
+        return;
+    }
+
+    renderCartModal();
+    document.getElementById("cartModal").classList.remove("hidden");
+}
+
+function closeCart(){
+    document.getElementById("cartModal").classList.add("hidden");
+}
+
+function renderCartModal(){
+    const container = document.getElementById("cartItems");
+    const cart = getCart();
+
+    if(!cart.length){
+        container.innerHTML = `<div class="empty">Your cart is empty.</div>`;
+        document.getElementById("cartTotal").textContent = "0.00";
+        return;
+    }
+
+    container.innerHTML = cart.map(item => `
+        <div class="cart-row">
+            <div>
+                <b>${escapeHTML(item.name)}</b><br>
+                ₹${Number(item.price).toFixed(2)} × ${Number(item.quantity)}
+            </div>
+            <div class="qty">
+                <button onclick="changeQuantity(${Number(item.product_id)},-1)">−</button>
+                ${Number(item.quantity)}
+                <button onclick="changeQuantity(${Number(item.product_id)},1)">+</button>
+                <button class="danger" onclick="removeFromCart(${Number(item.product_id)})">Remove</button>
+            </div>
+        </div>
+    `).join("");
+
+    document.getElementById("cartTotal").textContent = cartTotal().toFixed(2);
+}
+
+function openCheckout(){
+    const cart = getCart();
+
+    if(!cart.length){
+        alert("Your cart is empty.");
+        return;
+    }
+
+    closeCart();
+    document.getElementById("checkoutSummary").innerHTML =
+        cart.map(item => `
+            <div class="cart-row">
+                <span>${escapeHTML(item.name)} × ${item.quantity}</span>
+                <span>₹${(Number(item.price)*Number(item.quantity)).toFixed(2)}</span>
+            </div>
+        `).join("") +
+        `<div class="total-row"><span>Total</span><span>₹${cartTotal().toFixed(2)}</span></div>`;
+
+    document.getElementById("checkoutMessage").textContent = "";
+    document.getElementById("checkoutModal").classList.remove("hidden");
+}
+
+function closeCheckout(){
+    document.getElementById("checkoutModal").classList.add("hidden");
+}
+
+async function placeOrder(){
+    const cart = getCart();
+
+    if(!loggedInUser || currentRole !== "buyer"){
+        alert("Please login as Buyer.");
+        return;
+    }
+
+    if(!cart.length){
+        alert("Your cart is empty.");
+        return;
+    }
+
+    const message = document.getElementById("checkoutMessage");
+    const name = document.getElementById("checkoutName").value.trim();
+    const mobile = document.getElementById("checkoutMobile").value.trim();
+    const address = document.getElementById("checkoutAddress").value.trim();
+    const city = document.getElementById("checkoutCity").value.trim();
+    const pincode = document.getElementById("checkoutPincode").value.trim();
+    const payment = document.getElementById("checkoutPayment").value;
+
+    if(!name || !mobile || !address || !city || !pincode){
+        message.className = "message error";
+        message.textContent = "Please complete all delivery details.";
+        return;
+    }
+
+    const payload = {
+        buyer_id:Number(loggedInUser.id),
+        customer_name:name,
+        mobile,
+        address,
+        city,
+        pincode,
+        payment,
+        total:cartTotal(),
+        items:cart.map(x => ({
+            product_id:Number(x.product_id),
+            quantity:Number(x.quantity)
+        }))
+    };
+
+    try{
+        const response = await fetch(API + "/api/orders",{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+
+        if(!result.success){
+            message.className = "message error";
+            message.textContent = result.message || "Order failed.";
+            return;
+        }
+
+        localStorage.removeItem("vinothCart");
+        updateCartUI();
+        closeCheckout();
+        alert("✅ Order placed successfully! Order #" + result.order_id);
+        loadBuyerOrders();
+
+    }catch(error){
+        console.error(error);
+        message.className = "message error";
+        message.textContent = "Cannot connect to backend.";
+    }
+}
+
+
+/* ================= BUYER ORDERS ================= */
+
+async function loadBuyerOrders(){
+    if(!loggedInUser || currentRole !== "buyer") return;
+
+    const container = document.getElementById("buyerOrders");
+    container.innerHTML = `<div class="empty">Loading orders...</div>`;
+
+    try{
+        const response = await fetch(API + "/api/orders/buyer?buyer_id=" + Number(loggedInUser.id));
+        const result = await response.json();
+
+        const orders = result.orders || [];
+
+        if(!orders.length){
+            container.innerHTML = `<div class="empty">No orders yet.</div>`;
+            return;
+        }
+
+        container.innerHTML = orders.map(order => `
+            <div class="order-item">
+                <h3>🧾 Order #${order.id}</h3>
+                <div class="small">
+                    📅 ${escapeHTML(order.date)}<br>
+                    💳 ${escapeHTML(order.payment)}<br>
+                    📍 ${escapeHTML(order.address)}, ${escapeHTML(order.city)} - ${escapeHTML(order.pincode)}<br>
+                    📦 Status: <b>${escapeHTML(order.status)}</b>
+                </div>
+                <hr style="margin:10px 0;border:0;border-top:1px solid #ddd">
+                ${(order.products || []).map(p =>
+                    `<div class="order-product">
+                        🛍️ ${escapeHTML(p.name)} — ₹${Number(p.price).toFixed(2)} × ${p.quantity}
+                    </div>`
+                ).join("")}
+                <div class="total-row">
+                    <span>Total</span>
+                    <span>₹${Number(order.total).toFixed(2)}</span>
+                </div>
+            </div>
+        `).join("");
+
+    }catch(error){
+        console.error(error);
+        container.innerHTML = `<div class="empty error">Failed to load orders.</div>`;
+    }
+}
+
+
+/* ================= SELLER ================= */
+
+function getLoggedInSeller(){
+    if(!loggedInUser || currentRole !== "seller") return null;
+    return loggedInUser;
+}
+
+async function addProduct(event){
+    event.preventDefault();
+
+    const seller = getLoggedInSeller();
+
+    if(!seller){
+        alert("Please login as Seller.");
+        return;
+    }
+
+    const name = document.getElementById("sellerProductName").value.trim();
+    const price = Number(document.getElementById("sellerProductPrice").value);
+    const quantity = Number(document.getElementById("sellerProductQuantity").value);
+    const category = document.getElementById("sellerProductCategory").value;
+    const imageUrl = document.getElementById("sellerProductImage").value.trim();
+
+    if(!name || price <= 0 || quantity <= 0 || !category){
+        document.getElementById("sellerMessage").className = "message error";
+        document.getElementById("sellerMessage").textContent = "Please enter valid product details.";
+        return;
+    }
+
+    try{
+        const response = await fetch(API + "/api/products",{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({
+                seller_id:Number(seller.id),
+                name,
+                price,
+                quantity,
+                category
+            })
+        });
+
+        const result = await response.json();
+
+        if(!result.success){
+            document.getElementById("sellerMessage").className = "message error";
+            document.getElementById("sellerMessage").textContent = result.message || "Failed to add product.";
+            return;
+        }
+
+        if(result.product_id && imageUrl){
+            saveProductImage(result.product_id,imageUrl);
+        }
+
+        document.querySelector("#sellerView form").reset();
+        document.getElementById("sellerImagePreview").textContent = "Product image preview";
+        document.getElementById("sellerMessage").className = "message success";
+        document.getElementById("sellerMessage").textContent = "✅ Product added successfully!";
+
+        await loadSellerProducts();
+
+    }catch(error){
+        console.error(error);
+        document.getElementById("sellerMessage").className = "message error";
+        document.getElementById("sellerMessage").textContent = "Cannot connect to backend.";
+    }
+}
+
+document.getElementById("sellerProductImage").addEventListener("input",function(){
+    const url = this.value.trim();
+    const preview = document.getElementById("sellerImagePreview");
+
+    if(!url){
+        preview.textContent = "Product image preview";
+        return;
+    }
+
+    preview.innerHTML = `<img src="${escapeHTML(url)}" alt="Preview" onerror="this.parentElement.textContent='Image could not be loaded'">`;
+});
+
+async function loadSellerProducts(){
+    const container = document.getElementById("sellerProducts");
+
+    if(!loggedInUser || currentRole !== "seller") return;
+
+    container.innerHTML = `<div class="empty">Loading products...</div>`;
+
+    try{
+        const response = await fetch(API + "/api/products");
+        const result = await response.json();
+
+        const products = (result.products || []).filter(
+            p => Number(p.seller_id) === Number(loggedInUser.id)
+        );
+
+        if(!products.length){
+            container.innerHTML = `<div class="empty">No products added yet.</div>`;
+            return;
+        }
+
+        container.innerHTML = products.map(p => {
+            const img = getImageForSellerProduct(p);
+            return `
+                <div class="list-item">
+                    <div class="list-head">
+                        <div>
+                            ${img ? `<img src="${escapeHTML(img)}" style="width:80px;height:60px;object-fit:contain;background:#fff;border-radius:8px;float:left;margin-right:10px">` : ""}
+                            <b>${escapeHTML(p.name)}</b>
+                            <div class="small">
+                                💰 ₹${Number(p.price).toFixed(2)}<br>
+                                📦 Quantity: ${p.quantity}<br>
+                                🏷️ ${escapeHTML(p.category)}
+                            </div>
+                        </div>
+                        <div class="inline">
+                            <button class="secondary" onclick="editSellerProduct(${Number(p.id)})">✏️ Edit</button>
+                            <button class="danger" onclick="deleteSellerProduct(${Number(p.id)})">🗑️ Delete</button>
+                        </div>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+            `;
+        }).join("");
+
+    }catch(error){
+        console.error(error);
+        container.innerHTML = `<div class="empty error">Failed to load seller products.</div>`;
+    }
+}
+
+async function editSellerProduct(id){
+    const product = currentProducts.find(p => Number(p.id) === Number(id));
+
+    const name = prompt("Product Name:");
+    if(name === null) return;
+
+    const price = prompt("Price:",product ? product.price : "");
+    if(price === null) return;
+
+    const quantity = prompt("Quantity:",product ? product.quantity : "");
+    if(quantity === null) return;
+
+    const category = prompt("Category:",product ? product.category : "");
+    if(category === null) return;
+
+    const image = prompt("Product Image URL / Path (optional):",getImageForSellerProduct({id}) || "");
+    if(image === null) return;
+
+    try{
+        const response = await fetch(API + "/api/products/update",{
+            method:"PUT",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({
+                id:Number(id),
+                seller_id:Number(loggedInUser.id),
+                name:name.trim(),
+                price:Number(price),
+                quantity:Number(quantity),
+                category:category.trim()
+            })
+        });
+
+        const result = await response.json();
+
+        if(!result.success){
+            alert("❌ " + (result.message || "Update failed."));
+            return;
+        }
+
+        if(image.trim()) saveProductImage(id,image.trim());
+        else removeProductImage(id);
+
+        alert("✅ Product updated successfully!");
+        loadSellerProducts();
+
+    }catch(error){
+        console.error(error);
+        alert("❌ Cannot connect to backend.");
+    }
+}
+
+async function deleteSellerProduct(id){
+    if(!confirm("Delete this product?")) return;
+
+    try{
+        const response = await fetch(API + "/api/products/delete",{
+            method:"DELETE",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({id:Number(id)})
+        });
+
+        const result = await response.json();
+
+        if(!result.success){
+            alert("❌ " + (result.message || "Delete failed."));
+            return;
+        }
+
+        removeProductImage(id);
+        alert("✅ Product deleted.");
+        loadSellerProducts();
+
+    }catch(error){
+        console.error(error);
+        alert("❌ Cannot connect to backend.");
+    }
+}
+
+async function loadSellerOrders(){
+    if(!loggedInUser || currentRole !== "seller") return;
+
+    const container = document.getElementById("sellerOrders");
+    container.innerHTML = `<div class="empty">Loading orders...</div>`;
+
+    try{
+        const response = await fetch(API + "/api/orders/seller?seller_id=" + Number(loggedInUser.id));
+        const result = await response.json();
+
+        const orders = result.orders || [];
+
+        if(!orders.length){
+            container.innerHTML = `<div class="empty">No orders received yet.</div>`;
+            return;
+        }
+
+        container.innerHTML = orders.map(order => `
+            <div class="order-item">
+                <h3>🧾 Order #${order.id}</h3>
+                <div class="small">
+                    👤 Customer: ${escapeHTML(order.customer_name || order.customerName)}<br>
+                    📱 Mobile: ${escapeHTML(order.mobile)}<br>
+                    📍 ${escapeHTML(order.address)}, ${escapeHTML(order.city)} - ${escapeHTML(order.pincode)}<br>
+                    💳 ${escapeHTML(order.payment)}
+                </div>
+                <hr style="margin:10px 0;border:0;border-top:1px solid #ddd">
+                ${(order.products || []).map(p =>
+                    `<div class="order-product">🛍️ ${escapeHTML(p.name)} — ₹${Number(p.price).toFixed(2)} × ${p.quantity}</div>`
+                ).join("")}
+                <div class="total-row">
+                    <span>Total</span>
+                    <span>₹${Number(order.total).toFixed(2)}</span>
+                </div>
+                <div style="margin-top:10px"><b>Status:</b> ${escapeHTML(order.status)}</div>
+            </div>
+        `).join("");
+
+    }catch(error){
+        console.error(error);
+        container.innerHTML = `<div class="empty error">Failed to load seller orders.</div>`;
+    }
+}
+
+
+/* ================= ADMIN ================= */
+
+async function loadAdminProducts(){
+    if(!loggedInUser || currentRole !== "admin") return;
+
+    const container = document.getElementById("adminProducts");
+    container.innerHTML = `<div class="empty">Loading products...</div>`;
+
+    try{
+        const response = await fetch(API + "/api/products");
+        const result = await response.json();
+        const products = result.products || [];
+
+        document.getElementById("adminStatProducts").textContent = products.length;
+
+        if(!products.length){
+            container.innerHTML = `<div class="empty">No seller products.</div>`;
+            return;
+        }
+
+        container.innerHTML = products.map(p => {
+            const img = getImageForSellerProduct(p);
+            return `
+                <div class="list-item">
+                    <div class="list-head">
+                        <div>
+                            ${img ? `<img src="${escapeHTML(img)}" style="width:85px;height:65px;object-fit:contain;background:#fff;border-radius:8px;float:left;margin-right:10px">` : ""}
+                            <b>${escapeHTML(p.name)}</b>
+                            <div class="small">
+                                💰 ₹${Number(p.price).toFixed(2)}<br>
+                                📦 ${p.quantity}<br>
+                                🏷️ ${escapeHTML(p.category)}<br>
+                                👤 Seller ID: ${p.seller_id}
+                            </div>
+                        </div>
+                        <button class="danger" onclick="deleteAdminProduct(${Number(p.id)})">🗑️ Delete</button>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+            `;
+        }).join("");
+
+    }catch(error){
+        console.error(error);
+        container.innerHTML = `<div class="empty error">Failed to load products.</div>`;
+    }
+}
+
+async function deleteAdminProduct(id){
+    if(!confirm("Delete this product?")) return;
+
+    try{
+        const response = await fetch(API + "/api/products/delete",{
+            method:"DELETE",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({id:Number(id)})
+        });
+
+        const result = await response.json();
+
+        if(!result.success){
+            alert("❌ " + (result.message || "Delete failed."));
+            return;
+        }
+
+        removeProductImage(id);
+        alert("✅ Product deleted.");
+        loadAdminProducts();
+
+    }catch(error){
+        console.error(error);
+        alert("❌ Cannot connect to backend.");
+    }
+}
+
+async function loadAdminUsers(){
+    if(!loggedInUser || currentRole !== "admin") return;
+
+    const container = document.getElementById("adminUsers");
+    container.innerHTML = `<div class="empty">Loading users...</div>`;
+
+    try{
+        const response = await fetch(API + "/api/admin/users");
+        const result = await response.json();
+        const users = result.users || [];
+
+        document.getElementById("adminStatUsers").textContent = users.length;
+
+        if(!users.length){
+            container.innerHTML = `<div class="empty">No users found.</div>`;
+            return;
+        }
+
+        container.innerHTML = users.map(u => `
+            <div class="list-item">
+                <div class="list-head">
+                    <div>
+                        <b>${escapeHTML(u.name)}</b>
+                        <div class="small">
+                            📧 ${escapeHTML(u.email)}<br>
+                            👤 Role: <b>${escapeHTML(u.role)}</b>
+                        </div>
+                    </div>
+                    ${
+                        String(u.role).toLowerCase() === "admin"
+                        ? `<span class="badge">Admin</span>`
+                        : `<button class="danger" onclick="deleteAdminUser(${Number(u.id)})">🗑️ Delete</button>`
+                    }
+                </div>
+            </div>
+        `).join("");
+
+    }catch(error){
+        console.error(error);
+        container.innerHTML = `<div class="empty error">Failed to load users.</div>`;
+    }
+}
+
+async function deleteAdminUser(id){
+    if(!confirm("Remove this user?")) return;
+
+    try{
+        const response = await fetch(API + "/api/admin/users/delete",{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({id:Number(id)})
+        });
+
+        const result = await response.json();
+
+        if(!result.success){
+            alert("❌ " + (result.message || "Delete failed."));
+            return;
+        }
+
+        alert("✅ User removed.");
+        loadAdminUsers();
+
+    }catch(error){
+        console.error(error);
+        alert("❌ Cannot connect to backend.");
+    }
+}
+
+async function loadAdminOrders(){
+    if(!loggedInUser || currentRole !== "admin") return;
+
+    const container = document.getElementById("adminOrders");
+    container.innerHTML = `<div class="empty">Loading orders...</div>`;
+
+    try{
+        const response = await fetch(API + "/api/admin/orders");
+        const result = await response.json();
+        const orders = result.orders || [];
+
+        document.getElementById("adminStatOrders").textContent = orders.length;
+
+        if(!orders.length){
+            container.innerHTML = `<div class="empty">No orders yet.</div>`;
+            return;
+        }
+
+        container.innerHTML = orders.map(order => `
+            <div class="order-item">
+                <h3>🧾 Order #${order.id}</h3>
+
+                <div class="small">
+                    👤 ${escapeHTML(order.customer_name || order.customerName)}<br>
+                    📱 ${escapeHTML(order.mobile)}<br>
+                    📍 ${escapeHTML(order.address)}, ${escapeHTML(order.city)} - ${escapeHTML(order.pincode)}<br>
+                    💳 ${escapeHTML(order.payment)}<br>
+                    💰 ₹${Number(order.total).toFixed(2)}
+                </div>
+
+                <div style="margin-top:12px">
+                    <label><b>Order Status</b></label>
+                    <select class="status-select" onchange="updateOrderStatus(${Number(order.id)},this.value)">
+                        ${["Placed","Processing","Shipped","Delivered"].map(s =>
+                            `<option value="${s}" ${s === order.status ? "selected" : ""}>${s}</option>`
+                        ).join("")}
+                    </select>
+                </div>
+
+                <hr style="margin:12px 0;border:0;border-top:1px solid #ddd">
+
+                ${(order.products || []).map(p =>
+                    `<div class="order-product">🛍️ ${escapeHTML(p.name)} — ₹${Number(p.price).toFixed(2)} × ${p.quantity}</div>`
+                ).join("")}
+            </div>
+        `).join("");
+
+    }catch(error){
+        console.error(error);
+        container.innerHTML = `<div class="empty error">Failed to load orders.</div>`;
+    }
+}
+
+async function updateOrderStatus(id,status){
+    try{
+        const response = await fetch(API + "/api/admin/orders/status",{
+            method:"PUT",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({id:Number(id),status})
+        });
+
+        const result = await response.json();
+
+        if(!result.success){
+            alert("❌ " + (result.message || "Status update failed."));
+            return;
+        }
+
+        alert("✅ Order status updated!");
+        loadAdminOrders();
+
+    }catch(error){
+        console.error(error);
+        alert("❌ Cannot connect to backend.");
+    }
+}
+
+
+/* ================= INITIAL STATE ================= */
+
+selectRole("buyer");
+
+const savedUser = localStorage.getItem("vinothLoggedInUser");
+const savedRole = localStorage.getItem("vinothMartRole");
+
+/*
+ * Do NOT auto-login from localStorage.
+ * The user always sees the login page when this file is opened.
+ * Existing storage is left untouched until a new login succeeds.
+ */
+
+</script>
+</body>
+</html>
